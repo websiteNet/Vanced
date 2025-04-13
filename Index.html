@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Downloads Vanced</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #121212;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .center {
+      margin-top: 20%;
+    }
+    .hidden {
+      display: none;
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #1DB954;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: grey;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="welcome" class="center fade-in">
+    <h1>Bem-vindo</h1>
+    <p id="loading">Loading...</p>
+  </div>
+
+  <div id="microg-check" class="hidden fade-in">
+    <h2>Você já possui o MicroG instalado?</h2>
+    <button onclick="baixarMicroG()">Não, quero baixar</button>
+    <button onclick="confirmarMicroG()">Sim, já tenho</button>
+  </div>
+
+  <div id="verificado" class="hidden fade-in">
+    <h3>Status: MicroG verificado!</h3>
+  </div>
+
+  <div id="main-content" class="hidden fade-in">
+    <h2>Escolha um download</h2>
+    <select id="downloads" onchange="baixarSelecionado()">
+      <option disabled selected>Selecione uma opção</option>
+      <option value="https://github.com/vancedapps/vanced.net/releases/download/2025-14/vanced.net_vanced_youtube_ext_v19.47.53_cli5.0.1_p5.6.2.2.apk">YouTube Avançado</option>
+      <option value="https://github.com/vancedapps/vanced.net/releases/download/2025-15/vanced.net_vanced_youtube_v20.07.39_cli5.0.1.1_p5.19.0.7.apk">YouTube</option>
+      <option value="https://github.com/vancedapps/vanced.net/releases/download/2025-14/vanced.net_vanced_youtube_music_ext_arm64_v8a_v8.12.53_cli5.0.1_p5.6.2.2.apk">YouTube Music Avançado</option>
+      <option value="https://github.com/vancedapps/vanced.net/releases/download/2025-15/vanced.net_vanced_youtube_music_arm64_v8a_v8.05.51_cli5.0.1.1_p5.19.0.7.apk">YouTube Music</option>
+    </select>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById('welcome').classList.add('hidden');
+      document.getElementById('microg-check').classList.remove('hidden');
+    }, 5000);
+
+    function baixarMicroG() {
+      window.open("https://github.com/vancedapps/vanced.net/releases/download/2025-3/vanced.net_vanced_gms_microg_v0.3.1.4.240913.apk", "_blank");
+      confirmarMicroG();
+    }
+
+    function confirmarMicroG() {
+      document.getElementById('microg-check').classList.add('hidden');
+      document.getElementById('verificado').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('verificado').classList.add('hidden');
+        document.getElementById('main-content').classList.remove('hidden');
+      }, 1500);
+    }
+
+    function baixarSelecionado() {
+      const link = document.getElementById('downloads').value;
+      if (link) {
+        window.open(link, '_blank');
+      }
+    }
+  </script>
+
+</body>
+</html>
